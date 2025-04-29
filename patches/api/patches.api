@@ -1641,6 +1641,6 @@ public final class app/revanced/patches/shared/opus/BaseOpusCodecsPatchKt {
 	public static final fun baseOpusCodecsPatch ()Lapp/revanced/patcher/patch/BytecodePatch;
 }
 
-public final class app/revanced/patches/youtube/misc/codecs/OpusCodecPatchKt {
+public final class app/revanced/patches/youtube/codecs/OpusCodecPatchKt {
 	public static final fun getOpusCodecPatch ()Lapp/revanced/patcher/patch/BytecodePatch;
 }
