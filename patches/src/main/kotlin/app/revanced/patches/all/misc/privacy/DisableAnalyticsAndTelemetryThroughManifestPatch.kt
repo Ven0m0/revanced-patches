@@ -1,9 +1,7 @@
 package app.revanced.patches.all.misc.privacy
 
-import app.revanced.patcher.data.ResourceContext
+import app.revanced.patcher.patch.ResourcePatchContext.kt
 import app.revanced.patcher.patch.PatchException
-import app.revanced.patcher.patch.ResourcePatch
-import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.util.asSequence
 import app.revanced.util.getNode
 import org.w3c.dom.Document
