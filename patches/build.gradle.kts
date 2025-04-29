@@ -15,6 +15,9 @@ patches {
 dependencies {
     // Required due to smali, or build fails. Can be removed once smali is bumped.
     implementation(libs.guava)
+    implementation(libs.revanced.patcher)
+     implementation(libs.smali)
+    implementation(libs.gson)
     // Android API stubs defined here.
     compileOnly(project(":patches:stub"))
 }
@@ -41,7 +44,12 @@ tasks {
 kotlin {
     compilerOptions {
         freeCompilerArgs = listOf("-Xcontext-receivers")
+        jvmTarget.set(JvmTarget.JVM_11)
     }
+}
+
+java {
+    targetCompatibility = JavaVersion.VERSION_11
 }
 
 publishing {
