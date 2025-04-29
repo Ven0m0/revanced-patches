@@ -1,5 +1,6 @@
 package app.revanced.patches.all.misc.privacy
 
+import app.revanced.patcher.patch.Patch
 import app.revanced.patcher.patch.ResourcePatchContext.kt
 import app.revanced.patcher.patch.PatchException
 import app.revanced.util.asSequence
