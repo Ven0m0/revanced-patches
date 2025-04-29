@@ -1,5 +1,6 @@
 package app.revanced.patches.all.misc.privacy
 
+import app.revanced.patcher.patch.Patch
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
