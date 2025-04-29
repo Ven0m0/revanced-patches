@@ -1,6 +1,7 @@
 package app.revanced.patches.all.misc.privacy
 
 import app.revanced.patcher.patch.Patch
+import app.revanced.patcher.patch.Option
 import app.revanced.patcher.patch.options.PatchOption
 import app.revanced.patcher.patch.options.PatchOption.PatchExtensions.booleanPatchOption
 import kotlin.properties.ReadOnlyProperty
