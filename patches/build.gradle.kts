@@ -1,5 +1,4 @@
 import org.gradle.kotlin.dsl.support.listFilesOrdered
-import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
     alias(libs.plugins.kotlin)
@@ -28,7 +27,7 @@ dependencies {
     implementation(libs.smali)
     implementation(libs.gson)
     // Android API stubs defined here.
-    compileOnly(project(":patches:stub"))
+    //compileOnly(project(":patches:stub"))
 }
 
 tasks {
