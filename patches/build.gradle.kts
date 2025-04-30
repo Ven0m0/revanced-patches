@@ -1,18 +1,10 @@
-import org.gradle.kotlin.dsl.support.listFilesOrdered
-
-plugins {
-    alias(libs.plugins.kotlin)
-    alias(libs.plugins.binary.compatibility.validator)
-    `maven-publish`
-}
-
 group = "app.revanced"
 
 patches {
     about {
         name = "ReVanced Patches"
         description = "Patches for ReVanced"
-        source = "git@github.com:Ven0m0/revanced-patches.git"
+        source = "git@github.com:revanced/revanced-patches.git"
         author = "ReVanced"
         contact = "contact@revanced.app"
         website = "https://revanced.app"
@@ -23,47 +15,43 @@ patches {
 dependencies {
     // Required due to smali, or build fails. Can be removed once smali is bumped.
     implementation(libs.guava)
-    implementation(libs.revanced.patcher)
-    implementation(libs.smali)
-    implementation(libs.gson)
+	implementation(libs.revanced.patcher)
+	implementation(libs.smali)
+	implementation(libs.gson)
     // Android API stubs defined here.
     //compileOnly(project(":patches:stub"))
 }
 
 tasks {
-    jar {
-        exclude("app/revanced/generator")
-    }
-    register<JavaExec>("generatePatchesFiles") {
-        description = "Generate patches files"
+    register<JavaExec>("preprocessCrowdinStrings") {
+        description = "Preprocess strings for Crowdin push"
 
-        dependsOn(build)
+        dependsOn(compileKotlin)
 
-        classpath = sourceSets["main"].runtimeClasspath
-        mainClass.set("app.revanced.generator.MainKt")
-    }
-    // Used by gradle-semantic-release-plugin.
-    publish {
-        dependsOn("generatePatchesFiles")
-    }
+        classpath = sourceSets["main"].runtimeClasspath
+        mainClass.set("app.revanced.util.CrowdinPreprocessorKt")
+
+        args = listOf(
+            "src/main/resources/addresources/values/strings.xml",
+            // Ideally this would use build/tmp/crowdin/strings.xml
+            // But using that does not work with Crowdin pull because
+            // it does not recognize the strings.xml file belongs to this project.
+            "src/main/resources/addresources/values/strings.xml"
+        )
+    }
 }
 
 kotlin {
     compilerOptions {
         freeCompilerArgs = listOf("-Xcontext-receivers")
-        jvmTarget.set(JvmTarget.JVM_11)
     }
-}
-
-java {
-    targetCompatibility = JavaVersion.VERSION_11
 }
 
 publishing {
     repositories {
         maven {
             name = "GitHubPackages"
-            url = uri("https://maven.pkg.github.com/Ven0m0/revanced-patches")
+            url = uri("https://maven.pkg.github.com/revanced/revanced-patches")
             credentials {
                 username = System.getenv("GITHUB_ACTOR")
                 password = System.getenv("GITHUB_TOKEN")
