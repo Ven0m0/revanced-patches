@@ -1,10 +1,9 @@
 package app.revanced.patches.all.misc.privacy
 
-import app.revanced.patcher.patch.Patch
+import app.revanced.patcher.patch.*
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
-import app.revanced.patcher.extensions.InstructionExtensions.getInstructions
 import app.revanced.patcher.patch.BytecodePatchContext
 import app.revanced.patcher.patch.PatchException
 import app.revanced.patcher.util.smali.ExternalLabel
